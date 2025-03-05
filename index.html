@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust - Explore the World</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-globe-americas"></i>
+                        <span>Wanderlust</span>
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="where.html">Where to Stay</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="animate-fade-in">Discover Your Next Adventure</h1>
+                <p class="animate-fade-in-delay">Explore breathtaking destinations around the world</p>
+                <form id="search-form" class="search-form animate-fade-in-delay-2">
+                    <input type="text" id="country-search" placeholder="Enter a country name...">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-background">
+                <div class="parallax-bg"></div>
+            </div>
+        </section>
+
+        <section class="featured-destinations">
+            <div class="container">
+                <h2 class="section-title">Popular Destinations</h2>
+                <div class="destinations-grid">
+                    <div class="destination-card" data-country="japan">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1369&q=80" alt="Japan">
+                        </div>
+                        <div class="destination-info">
+                            <h3>Japan</h3>
+                            <p>Land of the rising sun with ancient temples and futuristic cities</p>
+                            <a href="explore.html?country=japan" class="btn">Explore</a>
+                        </div>
+                    </div>
+                    <div class="destination-card" data-country="italy">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80" alt="Italy">
+                        </div>
+                        <div class="destination-info">
+                            <h3>Italy</h3>
+                            <p>Home to incredible history, art, and world-famous cuisine</p>
+                            <a href="explore.html?country=italy" class="btn">Explore</a>
+                        </div>
+                    </div>
+                    <div class="destination-card" data-country="new zealand">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1421&q=80" alt="New Zealand">
+                        </div>
+                        <div class="destination-info">
+                            <h3>New Zealand</h3>
+                            <p>Breathtaking landscapes from mountains to beaches</p>
+                            <a href="explore.html?country=new zealand" class="btn">Explore</a>
+                        </div>
+                    </div>
+                    <div class="destination-card" data-country="morocco">
+                        <div class="destination-image">
+                            <img src="https://images.unsplash.com/photo-1539020140153-e479b8c64ac4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Morocco">
+                        </div>
+                        <div class="destination-info">
+                            <h3>Morocco</h3>
+                            <p>Vibrant markets, desert landscapes, and rich cultural heritage</p>
+                            <a href="explore.html?country=morocco" class="btn">Explore</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="travel-inspiration">
+            <div class="container">
+                <h2 class="section-title">Travel Inspiration</h2>
+                <div class="inspiration-grid">
+                    <div class="inspiration-card">
+                        <i class="fas fa-mountain"></i>
+                        <h3>Adventure</h3>
+                        <p>Discover thrilling experiences in the world's most exciting destinations</p>
+                    </div>
+                    <div class="inspiration-card">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <h3>Relaxation</h3>
+                        <p>Unwind on pristine beaches and luxurious resorts around the globe</p>
+                    </div>
+                    <div class="inspiration-card">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Culinary</h3>
+                        <p>Taste authentic cuisines and explore food markets worldwide</p>
+                    </div>
+                    <div class="inspiration-card">
+                        <i class="fas fa-landmark"></i>
+                        <h3>Cultural</h3>
+                        <p>Immerse yourself in rich traditions and historical wonders</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Get travel tips, destination guides, and exclusive offers straight to your inbox</p>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Wanderlust</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Explore</h3>
+                        <ul>
+                            <li><a href="explore.html?country=france">France</a></li>
+                            <li><a href="explore.html?country=japan">Japan</a></li>
+                            <li><a href="explore.html?country=australia">Australia</a></li>
+                            <li><a href="explore.html?country=brazil">Brazil</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Trip Planning</a></li>
+                            <li><a href="#">Travel Insurance</a></li>
+                            <li><a href="#">Group Tours</a></li>
+                            <li><a href="#">Private Guides</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Wanderlust. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+    

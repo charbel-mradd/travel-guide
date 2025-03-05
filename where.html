@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to Stay - Wanderlust</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <i class="fas fa-globe-americas"></i>
+                        <span>Wanderlust</span>
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="where.html" class="active">Where to Stay</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="where-page">
+        <section class="country-header">
+            <div class="container">
+                <h1 id="country-name">Where to Stay in <span>...</span></h1>
+                <div class="weather-widget" id="weather-widget">
+                    <div class="weather-loading">
+                        <div class="loading-spinner"></div>
+                        <p>Loading weather information...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="accommodations-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Hotels & Accommodations</h2>
+                    <div class="filter-sort">
+                        <div class="sort-options">
+                            <label for="sort-by">Sort by:</label>
+                            <select id="sort-by">
+                                <option value="recommended">Recommended</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Rating</option>
+                            </select>
+                        </div>
+                        <div class="price-filter">
+                            <label for="price-range">Price Range:</label>
+                            <select id="price-range">
+                                <option value="all">All Prices</option>
+                                <option value="budget">Budget ($)</option>
+                                <option value="moderate">Moderate ($$)</option>
+                                <option value="luxury">Luxury ($$$)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="accommodations-grid" class="accommodations-grid">
+                    <!-- Accommodations will be loaded here dynamically -->
+                    <div class="loading-accommodations">
+                        <div class="loading-spinner"></div>
+                        <p>Loading accommodations...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="restaurants-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Restaurants & Dining</h2>
+                    <div class="filter-sort">
+                        <div class="sort-options">
+                            <label for="restaurant-sort">Sort by:</label>
+                            <select id="restaurant-sort">
+                                <option value="recommended">Recommended</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Rating</option>
+                            </select>
+                        </div>
+                        <div class="cuisine-filter">
+                            <label for="cuisine-type">Cuisine:</label>
+                            <select id="cuisine-type">
+                                <option value="all">All Cuisines</option>
+                                <option value="local">Local</option>
+                                <option value="international">International</option>
+                                <option value="vegetarian">Vegetarian</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="restaurants-grid" class="restaurants-grid">
+                    <!-- Restaurants will be loaded here dynamically -->
+                    <div class="loading-restaurants">
+                        <div class="loading-spinner"></div>
+                        <p>Loading restaurants...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-modal" id="booking-modal">
+            <div class="modal-content">
+                <button class="close-modal" id="close-modal">&times;</button>
+                <h2>Book Your Stay</h2>
+                <form id="booking-form" class="booking-form">
+                    <div class="form-group">
+                        <label for="booking-name">Full Name</label>
+                        <input type="text" id="booking-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-email">Email</label>
+                        <input type="email" id="booking-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-phone">Phone</label>
+                        <input type="tel" id="booking-phone" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-check-in">Check In</label>
+                            <input type="text" id="booking-check-in" class="datepicker" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-check-out">Check Out</label>
+                            <input type="text" id="booking-check-out" class="datepicker" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-guests">Guests</label>
+                            <select id="booking-guests" required>
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5+ Guests</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-rooms">Rooms</label>
+                            <select id="booking-rooms" required>
+                                <option value="1" selected>1 Room</option>
+                                <option value="2">2 Rooms</option>
+                                <option value="3">3 Rooms</option>
+                                <option value="4">4+ Rooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-special-requests">Special Requests</label>
+                        <textarea id="booking-special-requests" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            I agree to the terms and conditions
+                        </label>
+                    </div>
+                    <button type="submit" class="btn book-now-btn">Book Now</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Wanderlust</span>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Explore</h3>
+                        <ul>
+                            <li><a href="explore.html?country=france">France</a></li>
+                            <li><a href="explore.html?country=japan">Japan</a></li>
+                            <li><a href="explore.html?country=australia">Australia</a></li>
+                            <li><a href="explore.html?country=brazil">Brazil</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Trip Planning</a></li>
+                            <li><a href="#">Travel Insurance</a></li>
+                            <li><a href="#">Group Tours</a></li>
+                            <li><a href="#">Private Guides</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Wanderlust. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="scripts.js"></script>
+    <script src="where.js"></script>
+</body>
+</html>
