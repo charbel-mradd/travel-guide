@@ -152,6 +152,37 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Event listener for country search
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                const newCountry = searchInput.value.trim().toLowerCase();
+                if (newCountry) {
+                    // Update URL parameter
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set('country', newCountry);
+                    window.history.pushState({}, '', newUrl);
+
+                    // Save new country to local storage
+                    localStorage.setItem('selectedCountry', newCountry);
+
+                    // Update page title
+                    if (countryNameElement) {
+                        countryNameElement.innerHTML = `Where to Stay in <span>${newCountry.charAt(0).toUpperCase() + newCountry.slice(1)}</span>`;
+                    }
+
+                    // Update weather, accommodations, and restaurants
+                    fetchWeather(newCountry);
+                    fetchAccommodations(newCountry);
+                    fetchRestaurants(newCountry);
+                }
+            }
+        });
+    }
 });
 
 // Functions
@@ -479,47 +510,35 @@ function sortAccommodations(sortBy) {
     
     // Sort cards based on selected option
     accommodationCards.sort((a, b) => {
-        if (sortBy === 'price-low') {
+        if (sortBy === 'price-low-high') {
             return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
-        } else if (sortBy === 'price-high') {
+        } else if (sortBy === 'price-high-low') {
             return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
-        } else if (sortBy === 'rating') {
+        } else if (sortBy === 'rating-high-low') {
             return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
-        } else {
-            // Default to recommended (random order)
-            return 0.5 - Math.random();
+        } else if (sortBy === 'rating-low-high') {
+            return parseFloat(a.getAttribute('data-rating')) - parseFloat(b.getAttribute('data-rating'));
         }
     });
     
-    // Clear grid and append sorted cards
+    // Clear existing cards
     accommodationsGrid.innerHTML = '';
+    
+    // Append sorted cards
     accommodationCards.forEach(card => {
         accommodationsGrid.appendChild(card);
     });
 }
 
-// Filter accommodations by price range
-function filterAccommodationsByPrice(priceRange) {
-    const accommodationCards = document.querySelectorAll('.accommodation-card');
+// Sort accommodations by price or rating
+function sortAccommodations(sortBy) {
+    const accommodationsGrid = document.getElementById('accommodations-grid');
+    const accommodationCards = Array.from(document.querySelectorAll('.accommodation-card'));
     
-    accommodationCards.forEach(card => {
-        const priceCategory = card.getAttribute('data-price-category');
-        
-        // Check if price category matches
-        const matchesPrice = priceRange === 'all' || priceCategory === priceRange;
-        
-        // Show or hide card based on filters
-        if (matchesPrice) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-// Sort restaurants by price or rating
-function sortRestaurants(sortBy) {
-document.addEventListener('DOMContentLoaded', function() {
+    if (!accommodationsGrid || accommodationCards.length === 0) return;
+    
+    // Sort cards based on selected option
+   document.addEventListener('DOMContentLoaded', function() {
     // Get country from URL parameter or local storage
     const urlParams = new URLSearchParams(window.location.search);
     let country = urlParams.get('country') || localStorage.getItem('selectedCountry');
@@ -608,7 +627,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cuisineTypeSelect = document.getElementById('cuisine-type');
     
     if (sortBySelect) {
-       BySelect.addEventListener('change', function() {
+        sortBySelectEventListener('change', function() {
             sortAccommodations(this.value);
         });
     }
@@ -672,6 +691,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         }
+    }
+
+    // Event listener for country search
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                const newCountry = searchInput.value.trim().toLowerCase();
+                if (newCountry) {
+                    // Update URL parameter
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set('country', newCountry);
+                    window.history.pushState({}, '', newUrl);
+
+                    // Save new country to local storage
+                    localStorage.setItem('selectedCountry', newCountry);
+
+                    // Update page title
+                    if (countryNameElement) {
+                        countryNameElement.innerHTML = `Where to Stay in <span>${newCountry.charAt(0).toUpperCase() + newCountry.slice(1)}</span>`;
+                    }
+
+                    // Update weather, accommodations, and restaurants
+                    fetchWeather(newCountry);
+                    fetchAccommodations(newCountry);
+                    fetchRestaurants(newCountry);
+                }
+            }
+        });
     }
 });
 
@@ -990,8 +1040,6 @@ function filterAccommodations(checkIn, checkOut, guests, accommodationType) {
         }
     });
 }
-
-// Sort accommodations by price or rating
 function sortAccommodations(sortBy) {
     const accommodationsGrid = document.getElementById('accommodations-grid');
     const accommodationCards = Array.from(document.querySelectorAll('.accommodation-card'));
@@ -1000,37 +1048,38 @@ function sortAccommodations(sortBy) {
     
     // Sort cards based on selected option
     accommodationCards.sort((a, b) => {
-        if (sortBy === 'price-low') {
+        if (sortBy === 'price-low-high') {
             return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
-        } else if (sortBy === 'price-high') {
+        } else if (sortBy === 'price-high-low') {
             return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
-        } else if (sortBy === 'rating') {
+        } else if (sortBy === 'rating-high-low') {
             return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
-        } else {
-            // Default to recommended (random order)
-            return 0.5 - Math.random();
+        } else if (sortBy === 'rating-low-high') {
+            return parseFloat(a.getAttribute('data-rating')) - parseFloat(b.getAttribute('data-rating'));
         }
     });
     
-    // Clear grid and append sorted cards
+    // Clear existing cards
     accommodationsGrid.innerHTML = '';
+    
+    // Append sorted cards
     accommodationCards.forEach(card => {
         accommodationsGrid.appendChild(card);
     });
 }
 
-// Filter accommodations by price range
-function filterAccommodationsByPrice(priceRange) {
+// Filter accommodations based on search form values
+function filterAccommodations(checkIn, checkOut, guests, accommodationType) {
     const accommodationCards = document.querySelectorAll('.accommodation-card');
     
     accommodationCards.forEach(card => {
-        const priceCategory = card.getAttribute('data-price-category');
+        const type = card.getAttribute('data-type');
         
-        // Check if price category matches
-        const matchesPrice = priceRange === 'all' || priceCategory === priceRange;
+        // Check if accommodation type matches
+        const matchesType = accommodationType === 'all' || type === accommodationType;
         
         // Show or hide card based on filters
-        if (matchesPrice) {
+        if (matchesType) {
             card.style.display = 'block';
         } else {
             card.style.display = 'none';
@@ -1038,183 +1087,34 @@ function filterAccommodationsByPrice(priceRange) {
     });
 }
 
-// Sort restaurants by price or rating
-function sortRestaurants(sortBy) {
-    const restaurantsGrid = document.getElementById('restaurants-grid');
-    const restaurantCards = Array.from(document.querySelectorAll('.restaurant-card'));
-    
-    if (!restaurantsGrid || restaurantCards.length === 0) return;
-    
-    // Sort cards based on selected option
-    restaurantCards.sort((a, b) => {
-        if (sortBy === 'price-low') {
-            return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
-        } else if (sortBy === 'price-high') {
-            return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
-        } else if (sortBy === 'rating') {
-            return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
-        } else {
-            // Default to recommended (random order)
-            return 0.5 - Math.random();
+// Event listener for country search
+const searchForm = document.getElementById('search-form');
+if (searchForm) {
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            const newCountry = searchInput.value.trim().toLowerCase();
+            if (newCountry) {
+                // Update URL parameter
+                const newUrl = new URL(window.location.href);
+                newUrl.searchParams.set('country', newCountry);
+                window.history.pushState({}, '', newUrl);
+
+                // Save new country to local storage
+                localStorage.setItem('selectedCountry', newCountry);
+
+                // Update page title
+                const countryNameElement = document.getElementById('country-name');
+                if (countryNameElement) {
+                    countryNameElement.innerHTML = `Where to Stay in <span>${newCountry.charAt(0).toUpperCase() + newCountry.slice(1)}</span>`;
+                }
+
+                // Update weather, accommodations, and restaurants
+                fetchWeather(newCountry);
+                fetchAccommodations(newCountry);
+                fetchRestaurants(newCountry);
+            }
         }
     });
-    
-    // Clear grid and append sorted cards
-    restaurantsGrid.innerHTML = '';
-    restaurantCards.forEach(card => {
-        restaurantsGrid.appendChild(card);
-    });
-}
-
-// Filter restaurants by cuisine type
-function filterRestaurantsByCuisine(cuisineType) {
-    const restaurantCards = document.querySelectorAll('.restaurant-card');
-    
-    restaurantCards.forEach(card => {
-        const cuisine = card.getAttribute('data-cuisine');
-        
-        // Check if cuisine type matches
-        const matchesCuisine = cuisineType === 'all' || cuisine === cuisineType;
-        
-        // Show or hide card based on filters
-        if (matchesCuisine) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-}
-
-// Open booking modal with pre-filled information
-function openBookingModal(name, price, type) {
-    const bookingModal = document.getElementById('booking-modal');
-    const modalContent = bookingModal.querySelector('.modal-content');
-    
-    modalContent.innerHTML = `
-        <div class="booking-details">
-            <h2>Book ${name}</h2>
-            <p>Type: ${type}</p>
-            <p>Price: $${price} / night</p>
-            <form id="booking-form">
-                <label for="check-in">Check-in:</label>
-                <input type="date" id="check-in" name="check-in" required>
-                
-                <label for="check-out">Check-out:</label>
-                <input type="date" id="check-out" name="check-out" required>
-                
-                <label for="guests">Guests:</label>
-                <input type="number" id="guests" name="guests" min="1" required>
-                
-                <button type="submit" class="btn">Confirm Booking</button>
-            </form>
-        </div>
-    `;
-    
-    bookingModal.classList.add('active');
-}
-
-// Initialize date pickers
-const datepickers = document.querySelectorAll('.datepicker');
-
-if (window.flatpickr) {
-    datepickers.forEach(datepicker => {
-        flatpickr(datepicker, {
-            minDate: 'today',
-            dateFormat: 'Y-m-d',
-            altInput: true,
-            altFormat: 'F j, Y',
-            disableMobile: true
-        });
-    });
-}
-
-// Booking search form
-const bookingSearchForm = document.getElementById('booking-search-form');
-
-if (bookingSearchForm) {
-    bookingSearchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const checkIn = document.getElementById('check-in').value;
-        const checkOut = document.getElementById('check-out').value;
-        const guests = document.getElementById('guests').value;
-        const accommodationType = document.getElementById('accommodation-type').value;
-        
-        // Filter accommodations based on form values
-        filterAccommodations(checkIn, checkOut, guests, accommodationType);
-    });
-}
-
-// Sort and filter controls
-const sortBySelect = document.getElementById('sort-by');
-const priceRangeSelect = document.getElementById('price-range');
-const restaurantSortSelect = document.getElementById('restaurant-sort');
-const cuisineTypeSelect = document.getElementById('cuisine-type');
-
-if (sortBySelect) {
-    sortBySelect.addEventListener('change', function() {
-        sortAccommodations(this.value);
-    });
-}
-
-if (priceRangeSelect) {
-    priceRangeSelect.addEventListener('change', function() {
-        filterAccommodationsByPrice(this.value);
-    });
-}
-
-if (restaurantSortSelect) {
-    restaurantSortSelect.addEventListener('change', function() {
-        sortRestaurants(this.value);
-    });
-}
-
-if (cuisineTypeSelect) {
-    cuisineTypeSelect.addEventListener('change', function() {
-        filterRestaurantsByCuisine(this.value);
-    });
-}
-
-// Booking modal
-const bookingModal = document.getElementById('booking-modal');
-const closeModalBtn = document.getElementById('close-modal');
-
-if (bookingModal && closeModalBtn) {
-    // Close modal when clicking the close button
-    closeModalBtn.addEventListener('click', function() {
-        bookingModal.classList.remove('active');
-    });
-    
-    // Close modal when clicking outside the content
-    bookingModal.addEventListener('click', function(e) {
-        if (e.target === bookingModal) {
-            bookingModal.classList.remove('active');
-        }
-    });
-    
-    // Booking form submission
-    const bookingForm = document.getElementById('booking-form');
-    
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show success message
-            const modalContent = bookingModal.querySelector('.modal-content');
-            modalContent.innerHTML = `
-                <div class="booking-success">
-                    <i class="fas fa-check-circle"></i>
-                    <h2>Booking Confirmed!</h2>
-                    <p>Thank you for your booking. We've sent a confirmation email with all the details.</p>
-                    <button class="btn" id="close-success">Close</button>
-                </div>
-            `;
-            
-            // Close modal when clicking the close button
-            document.getElementById('close-success').addEventListener('click', function() {
-                bookingModal.classList.remove('active');
-            });
-        });
-    }
-}}
+}};

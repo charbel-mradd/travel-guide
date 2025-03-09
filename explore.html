@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Destinations - Wanderlust</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
     <div class="loader">
@@ -54,17 +52,7 @@
 
         <section class="filter-section">
             <div class="container">
-                <div class="filter-controls">
-                    <div class="search-filter">
-                        <input type="text" id="attraction-search" placeholder="Search attractions...">
-                    </div>
-                    <div class="category-filter">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="landmarks">Landmarks</button>
-                        <button class="filter-btn" data-filter="nature">Nature</button>
-                        <button class="filter-btn" data-filter="culture">Culture</button>
-                    </div>
-                </div>
+               
             </div>
         </section>
 
@@ -80,27 +68,11 @@
             </div>
         </section>
 
-        <section class="attraction-slider">
-    <div class="container">
-        <h2 class="section-title">Featured Attractions</h2>
-        <div class="slider-container">
-            <div class="slider-wrapper" id="slider-wrapper">
-                <!-- Slider items will be loaded here dynamically -->
-            </div>
-            <button class="slider-btn prev" id="prev-slide" aria-label="Previous slide">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="slider-btn next" id="next-slide" aria-label="Next slide">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-</section>
-
+        
         <section class="map-section">
             <div class="container">
                 <h2>Explore the Map</h2>
-                <div id="map" class="map"></div>
+                <div id="map" class="map" style="height: 500px;"></div>
             </div>
         </section>
 
@@ -178,11 +150,8 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm7401tW2hjQnBDMsMhDstkCXXxqf8-kU"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="scripts.js"></script>
     <script src="explore.js"></script>
 </body>
 </html>
- 
-
