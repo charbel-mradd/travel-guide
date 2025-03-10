@@ -236,7 +236,6 @@ async function fetchWeather(city) {
         `;
     }
 }
-
 async function fetchAccommodations(country) {
     const accommodationsGrid = document.getElementById('accommodations-grid');
     
@@ -324,18 +323,12 @@ async function fetchAccommodations(country) {
                         <p>${type} in ${country.charAt(0).toUpperCase() + country.slice(1)} with excellent amenities and convenient location.</p>
                         <div class="accommodation-meta">
                             <span class="price">$${price} / night</span>
-                            <button class="btn book-btn">Book Now</button>
+                            <a href="https://www.booking.com/searchresults.html?ss=${country}" target="_blank" class="btn book-btn">Book Now</a>
                         </div>
                     </div>
                 `;
                 
                 accommodationsGrid.appendChild(card);
-                
-                // Add event listener to book button
-                const bookBtn = card.querySelector('.book-btn');
-                bookBtn.addEventListener('click', function() {
-                    openBookingModal(name, price, type);
-                });
             });
 
             // Save accommodations data to local storage
@@ -359,6 +352,7 @@ async function fetchAccommodations(country) {
         `;
     }
 }
+
 
 async function fetchRestaurants(country) {
     const restaurantsGrid = document.getElementById('restaurants-grid');
@@ -446,18 +440,12 @@ async function fetchRestaurants(country) {
                         <p>${cuisineType} cuisine in ${country.charAt(0).toUpperCase() + country.slice(1)} with a delightful ambiance and delicious food.</p>
                         <div class="restaurant-meta">
                             <span class="price">${priceIndicator}</span>
-                            <button class="btn book-btn">Book Now</button>
+                            <a href="https://www.opentable.com/s/?covers=2&dateTime=2023-03-10T19%3A00&metroId=72&regionIds%5B%5D=72&term=${country}" target="_blank" class="btn book-btn">Book Now</a>
                         </div>
                     </div>
                 `;
                 
                 restaurantsGrid.appendChild(card);
-                
-                // Add event listener to book button
-                const bookBtn = card.querySelector('.book-btn');
-                bookBtn.addEventListener('click', function() {
-                    openBookingModal(name, priceIndicator, cuisineType);
-                });
             });
 
             // Save restaurants data to local storage
@@ -864,18 +852,12 @@ async function fetchAccommodations(country) {
                         <p>${type} in ${country.charAt(0).toUpperCase() + country.slice(1)} with excellent amenities and convenient location.</p>
                         <div class="accommodation-meta">
                             <span class="price">$${price} / night</span>
-                            <button class="btn book-btn">Book Now</button>
+                            <a href="https://www.booking.com/searchresults.html?ss=${country}" target="_blank" class="btn book-btn">Book Now</a>
                         </div>
                     </div>
                 `;
                 
                 accommodationsGrid.appendChild(card);
-                
-                // Add event listener to book button
-                const bookBtn = card.querySelector('.book-btn');
-                bookBtn.addEventListener('click', function() {
-                    openBookingModal(name, price, type);
-                });
             });
 
             // Save accommodations data to local storage
@@ -986,18 +968,12 @@ async function fetchRestaurants(country) {
                         <p>${cuisineType} cuisine in ${country.charAt(0).toUpperCase() + country.slice(1)} with a delightful ambiance and delicious food.</p>
                         <div class="restaurant-meta">
                             <span class="price">${priceIndicator}</span>
-                            <button class="btn book-btn">Book Now</button>
+                            <a href="https://www.booking.com/searchresults.html?ss=${country}" target="_blank" class="btn book-btn">Book Now</a>
                         </div>
                     </div>
                 `;
                 
                 restaurantsGrid.appendChild(card);
-                
-                // Add event listener to book button
-                const bookBtn = card.querySelector('.book-btn');
-                bookBtn.addEventListener('click', function() {
-                    openBookingModal(name, priceIndicator, cuisineType);
-                });
             });
 
             // Save restaurants data to local storage
@@ -1021,6 +997,7 @@ async function fetchRestaurants(country) {
         `;
     }
 }
+
 
 // Filter accommodations based on search form values
 function filterAccommodations(checkIn, checkOut, guests, accommodationType) {
@@ -1110,11 +1087,11 @@ if (searchForm) {
                     countryNameElement.innerHTML = `Where to Stay in <span>${newCountry.charAt(0).toUpperCase() + newCountry.slice(1)}</span>`;
                 }
 
-                // Update weather, accommodations, and restaurants
+    // Update weather, accommodations, and restaurants
                 fetchWeather(newCountry);
                 fetchAccommodations(newCountry);
                 fetchRestaurants(newCountry);
             }
         }
     });
-}};
+}}
